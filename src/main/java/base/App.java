@@ -46,17 +46,27 @@ public class App {
         String noun = myApp.enterA("noun");
         String adverb = myApp.enterA("adverb");
 
-        myApp.generateStory(verb, adjective, noun, adverb);
+        String madLib = myApp.generateStory(verb, adjective, noun, adverb);
+        myApp.printMadLib(madLib);
     }
 
-    public void generateStory(String verb, String adj, String noun, String adverb){
-        String madlib = String.format("Do you %s your %s %s %s? " +
-                "That's hilarious!", verb, adj, noun, adverb);
+    public void printMadLib(String madlib){
         System.out.println(madlib);
     }
 
+    public String generateStory(String verb, String adj, String noun, String adverb){
+        String madlib = String.format("Do you %s your %s %s %s? " +
+                "That's hilarious!", verb, adj, noun, adverb);
+        return madlib;
+    }
+
     public String enterA(String type){
-        System.out.print("Enter a(n) " + type);
+        if(type.equalsIgnoreCase("adjective")
+                || type.equalsIgnoreCase("adverb")){
+            System.out.print("Enter an " + type + ": ");
+        } else {
+            System.out.print("Enter a " + type + ": ");
+        }
         String input = in.nextLine();
         return input;
     }
